@@ -1,0 +1,1 @@
+A 401 Unauthorized response means that the user cannot access a protected endpoint because the request has no valid authentication token. In contrast, a successful authenticated profile request returns 200 OK and displays the authenticated user's information. After logout, the access token is revoked, so it can no longer be used to access protected endpoints.
