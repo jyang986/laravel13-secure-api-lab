@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\AuthController;
@@ -12,12 +11,12 @@ Route::post('/login', [AuthController::class, 'login']);
 // AUTHENTICATED ROUTES
 Route::middleware('auth:sanctum')->group(function () {
 
-    // Existing user endpoint
+    // User endpoint
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
-    // Existing profile endpoint
+    // Profile endpoint
     Route::get('/profile', function (Request $request) {
         return response()->json([
             'message' => 'This is a protected route.',
@@ -25,24 +24,24 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
 
-    // Existing logout endpoint
+    // Logout endpoint
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // PART C: ADMIN AND STUDENT CAN ACCESS
+    // ADMIN AND STUDENT CAN ACCESS
     Route::get('/students', function () {
         return response()->json([
             'message' => 'Students list.',
         ]);
     })->middleware('role:admin,student');
 
-    // PART C: ADMIN DASHBOARD ONLY
+    // ADMIN DASHBOARD ONLY
     Route::get('/admin/dashboard', function () {
         return response()->json([
             'message' => 'Welcome to Admin Dashboard!',
         ]);
     })->middleware('admin');
 
-    // PART C: STUDENT DASHBOARD ONLY
+    // STUDENT DASHBOARD ONLY
     Route::get('/student/dashboard', function () {
         return response()->json([
             'message' => 'Welcome to Student Dashboard!',
@@ -58,7 +57,7 @@ Route::get('/sample', function () {
     ]);
 });
 
-// EXISTING PUBLIC HELLO ROUTE
+// PUBLIC HELLO ROUTE
 Route::get('/hello', function () {
     return response()->json([
         'message' => 'Welcome to the Laravel 13 API',
